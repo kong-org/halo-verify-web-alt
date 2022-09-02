@@ -23,8 +23,6 @@ function App() {
           <Route path="/confirm" element={<Confirm />} />
           <Route path="/success" element={<Success />} />
         </Routes>
-
-        <Footer />
       </BrowserRouter>
     </Width>
   )

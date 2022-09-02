@@ -5,9 +5,13 @@
 
   input[type='text'],
   textarea {
-    border: 1px solid $border;
+    border: 2px solid $black;
     font-size: 16px;
-    border-radius: 10px;
+    border-radius: 0;
+
+    &::placeholder {
+      color: rgba(0, 0, 0, 0.4);
+    }
   }
 
   input[type='text'] {

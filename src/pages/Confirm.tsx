@@ -18,8 +18,8 @@ export default function Confirm() {
   const device = deviceStore((s) => s.device)
   const message = registerStore((s) => s.message)
 
-  if (!device) return <Navigate to="/" />
-  if (signed) return <Navigate to="/success" />
+  // if (!device) return <Navigate to="/" />
+  // if (signed) return <Navigate to="/success" />
 
   return (
     <Card className={classNames('relative', { 'confirm-loading': loading })}>
@@ -34,7 +34,7 @@ export default function Confirm() {
           </div>
         ) : (
           <>
-            <img className="rounded-md" src={base64Image ? base64Image : form.imageSrc} />
+            <img src={base64Image ? base64Image : form.imageSrc} />
           </>
         )}
 
@@ -44,9 +44,11 @@ export default function Confirm() {
       <CardFooter>
         <CardPadding>
           {loading ? (
-            <Button fullWidth>Loading...</Button>
+            <Button color="neon" fullWidth>
+              Loading...
+            </Button>
           ) : (
-            <Button fullWidth onClick={signHalo}>
+            <Button color="neon" fullWidth onClick={signHalo}>
               Sign to finalize
             </Button>
           )}

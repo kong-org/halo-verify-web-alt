@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import walletStore from '../stores/walletStore'
 
-import { ReactComponent as Logo } from '../svg/logo.svg'
+import { ReactComponent as Logo } from '../svg/metafactory.svg'
 import connector from '../walletConnect'
 import Button from './Button'
 import WalletDropdown from './WalletDropdown'
@@ -30,13 +30,13 @@ export default function Header() {
   return (
     <header className="header">
       <Link to="/">
-        <img width="62" src="/assets/logo.png" />
+        <Logo />
       </Link>
 
       {store.connected ? (
         <WalletDropdown />
       ) : (
-        <Button size="small" color="pink-gradient" onClick={store.requestAccess}>
+        <Button size="small" color="neon" onClick={store.requestAccess}>
           Connect wallet
         </Button>
       )}

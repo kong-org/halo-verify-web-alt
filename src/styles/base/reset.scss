@@ -8,11 +8,12 @@ body {
   font-size: 16px;
   font-weight: 400;
   line-height: 1.65;
-  font-family: $font;
+  font-family: $font3;
   background-color: $bg;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  text-transform: uppercase;
 }
 
 h1,
@@ -21,7 +22,7 @@ h3,
 h4,
 h5,
 h6 {
-  font-weight: 700;
+  font-weight: 400;
   line-height: 1.2;
 }
 
@@ -41,7 +42,7 @@ textarea {
   border: none;
   background: transparent;
   outline: none;
-  font-family: $font;
+  font-family: $font3;
   font-size: 16px;
 }
 
@@ -52,6 +53,7 @@ input[type='search'],
 textarea {
   display: block;
   width: 100%;
+  text-transform: uppercase;
 }
 
 a,

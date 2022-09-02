@@ -11,6 +11,8 @@ import formatDescription from '../helpers/formatDescription'
 import truncateAddress from '../helpers/truncateAddress'
 import walletStore from '../stores/walletStore'
 import { getChainData } from '../helpers/getChainData'
+import { ReactComponent as Description } from '../svg/description.svg'
+import Footer from '../components/Footer'
 
 const ARWEAVE_NODE = process.env.REACT_APP_ARWEAVE_NODE || 'https://arweave.net'
 
@@ -34,54 +36,68 @@ export default function Success() {
 
   if (ds.device && !ds.registered) {
     return (
-      <Card>
-        <CardPadding>
-          <div className="loading-wrap-2 text-center">
-            <Loading />
-            <h2 className="text-lg mt-8">Minting success!</h2>
-            <p className="text-sm mt-1">Retrieving your record...</p>
-          </div>
-        </CardPadding>
-      </Card>
+      <>
+        <Card>
+          <CardPadding>
+            <div className="loading-wrap-2 text-center">
+              <Loading />
+              <h2 className="text-lg mt-8">Minting success!</h2>
+              <p className="text-sm mt-1">Retrieving your record...</p>
+            </div>
+          </CardPadding>
+        </Card>
+        <Footer />
+      </>
     )
   }
 
   const meta = JSON.parse(ds.device.device_token_metadata)
 
   return (
-    <Card className="relative">
-      <img src={rs.base64Image ? rs.base64Image : `${ARWEAVE_NODE}/${ds.device.node_id}`} />
-      <CardPadding>
-        <Badge>
-          <Smile /> <span className="ml-2">Successful</span>
-        </Badge>
-        <h2 className="uppercase mt-4">{meta.name}</h2>
+    <>
+      <Card className="relative">
+        <img src={rs.base64Image ? rs.base64Image : `${ARWEAVE_NODE}/${ds.device.node_id}`} />
 
-        <div className="success-body mt-1">
-          {ds.creator ? (
-            <p>
-              Created by{' '}
-              <a target="_blank" href={`${EXPLORER}/${ds.creator}`}>
-                {ds.creator}
-              </a>
-            </p>
-          ) : (
-            <p>
-              Created by{' '}
-              <a target="_blank" href={`${EXPLORER}/${ds.device.device_minter}`}>
-                {truncateAddress(ds.device.device_minter)}
-              </a>
-            </p>
-          )}
+        <div className="success-section">
+          <div className="padding">
+            <Badge>
+              <Smile /> <span className="ml-2">Successful</span>
+            </Badge>
 
-          <div className="mt-3 description" dangerouslySetInnerHTML={{ __html: formatDescription(meta.description) }}></div>
+            <h2 className="uppercase mt-4">{meta.name}</h2>
+
+            <div className="success-body mt-1">
+              {ds.creator ? (
+                <p>
+                  Created by{' '}
+                  <a target="_blank" href={`${EXPLORER}/${ds.creator}`}>
+                    {ds.creator}
+                  </a>
+                </p>
+              ) : (
+                <p>
+                  Created by{' '}
+                  <a target="_blank" href={`${EXPLORER}/${ds.device.device_minter}`}>
+                    {truncateAddress(ds.device.device_minter)}
+                  </a>
+                </p>
+              )}
+            </div>
+          </div>
         </div>
 
-        <Divider />
+        <div className="success-section flex">
+          <div className="success-section-label">
+            <Description />
+          </div>
 
-        <h3 className="font-normal mt-4 mb-1 text-light-gray text-xs">Ethereum address</h3>
-        <p className="break-word font-bold text-smb">{ds.keys?.primaryPublicKeyHash}</p>
-      </CardPadding>
-    </Card>
+          <div
+            className="mt-3 description padding"
+            dangerouslySetInnerHTML={{ __html: formatDescription(meta.description) }}
+          ></div>
+        </div>
+      </Card>
+      <Footer address={ds.keys?.primaryPublicKeyHash} />
+    </>
   )
 }

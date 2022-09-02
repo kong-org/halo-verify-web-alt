@@ -2,7 +2,6 @@
   text-align: center;
   display: inline-block;
   line-height: 48px;
-  border-radius: 24px;
   font-size: 13px;
   text-transform: uppercase;
   font-weight: bold;
@@ -10,6 +9,8 @@
   user-select: none;
   padding: 0 16px;
   transition: 0.2s color, 0.2s background-color, 0.2s border-color, 0.2s transform;
+  font-family: $font4;
+  letter-spacing: 1px;
 
   // States
   &:disabled {
@@ -56,5 +57,15 @@
 
   &.pink-gradient {
     background: linear-gradient(95.58deg, #fffcef -12.66%, #ffb9d2 54.5%, #ffd28f 108.52%);
+  }
+
+  &.neon {
+    background: $neon;
+    border: 2px solid #000000;
+    box-shadow: inset 4px 4px 0px rgba(255, 255, 255, 0.4), inset -4px -4px 0px rgba(0, 0, 0, 0.6);
+
+    &:disabled {
+      opacity: 0.5;
+    }
   }
 }

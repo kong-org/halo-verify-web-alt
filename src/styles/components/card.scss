@@ -1,6 +1,5 @@
 .card {
-  background: $white;
-  border-radius: 30px;
+  background: $tan;
   position: relative;
   overflow: hidden;
 }
@@ -21,16 +20,17 @@
 }
 
 .card-footer {
-  background: $grayBg;
-  border-radius: 0 0 30px 30px;
+  background: $tan;
+  // border-radius: 0 0 30px 30px;
   position: relative;
   z-index: 2;
+  border-top: 2px solid Black;
 }
 
 .card-back {
   display: flex;
   align-items: center;
-  font-family: $font2;
+  font-family: $font3;
   font-weight: bold;
   text-transform: uppercase;
   color: $black;
@@ -45,8 +45,8 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  border-radius: 50%;
-  color: $white;
+  // border-radius: 50%;
+  color: $tan;
   margin-right: 12px;
 
   svg {
