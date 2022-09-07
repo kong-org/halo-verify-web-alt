@@ -13,6 +13,7 @@ import walletStore from '../stores/walletStore'
 import { getChainData } from '../helpers/getChainData'
 import { ReactComponent as Description } from '../svg/description.svg'
 import Footer from '../components/Footer'
+import axios from 'axios'
 
 const ARWEAVE_NODE = process.env.REACT_APP_ARWEAVE_NODE || 'https://arweave.net'
 
@@ -25,10 +26,18 @@ const EXPLORER = getChainData(CHAIN_ID).explorer
 export default function Success() {
   const ds = deviceStore()
   const rs = registerStore()
+  const [meme, setMeme] = React.useState('')
 
   useEffect(() => {
     if (ds.device && !ds.registered) {
       ds.getDevice()
+    }
+
+    if (ds && ds.device) {
+      axios.get(`${ARWEAVE_NODE}/${ds.device.node_id}`).then((res) => {
+        const memeType = res.headers['content-type']
+        setMeme(memeType)
+      })
     }
   }, [])
 
@@ -56,7 +65,15 @@ export default function Success() {
   return (
     <>
       <Card className="relative">
-        <img src={rs.base64Image ? rs.base64Image : `${ARWEAVE_NODE}/${ds.device.node_id}`} />
+        {meme != '' && meme.indexOf('video') == -1 && (
+          <img src={rs.base64Image ? rs.base64Image : `${ARWEAVE_NODE}/${ds.device.node_id}`} />
+        )}
+
+        {meme != '' && meme.indexOf('video') > -1 && (
+          <video autoPlay loop muted>
+            <source src={rs.base64Image ? rs.base64Image : `${ARWEAVE_NODE}/${ds.device.node_id}`} />
+          </video>
+        )}
 
         <div className="success-section">
           <div className="padding">
