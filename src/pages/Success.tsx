@@ -70,7 +70,7 @@ export default function Success() {
         )}
 
         {meme != '' && meme.indexOf('video') > -1 && (
-          <video autoPlay loop muted>
+          <video playsInline autoPlay loop muted>
             <source src={rs.base64Image ? rs.base64Image : `${ARWEAVE_NODE}/${ds.device.node_id}`} />
           </video>
         )}
