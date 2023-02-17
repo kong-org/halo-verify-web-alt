@@ -1,0 +1,45 @@
+@font-face {
+  font-family: "RuneScape UF";
+  src: url("./button-font.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+.wrapper {
+  max-width: 100%;
+}
+
+.header-connect,
+.not-found-content-scan,
+.header-wallet-button {
+  background: #c8e400;
+  font-family: "RuneScape UF";
+  border: 2px solid #000;
+  box-shadow: inset 4px 4px 0 hsla(0, 0%, 100%, 0.4),
+    inset -4px -4px 0 rgba(0, 0, 0, 0.6);
+  border-radius: 0;
+  color: #120408;
+}
+
+.card-padding {
+  border-top: 2px solid #120408;
+}
+
+.divider {
+  height: 2px;
+  margin: 0 -24px;
+  width: calc(100% + 48px);
+  margin-top: 20px;
+}
+
+.content-detail h2 {
+  font-family: "RuneScape UF";
+  text-transform: uppercase;
+  font-size: 18px;
+}
+
+.not-found-chip-icon {
+  color: #c8e400;
+  fill: #120408;
+}
